@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!-- ** Plugins Needed for the Project ** -->
+{% comment %} <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid&#43;Serif:400%7cJosefin&#43;Sans:300,400,600,700 ">
+<link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css ">
+<link rel="stylesheet" href="plugins/themefisher-font/themefisher-font.min.css ">
+<link rel="stylesheet" href="plugins/slick/slick.min.css ">
+
+<!-- Stylesheets -->
+<link href="css/style.css" rel="stylesheet">
+
+  <!--Favicon-->
+  <link rel="icon" href="images/favicon.png" type="image/x-icon">
+  
+  </head> {% endcomment %}
+  
+{% block content %}
+<body id="body">
+  
+<!-- preloader start -->
+<div class="preloader"></div>
+<!-- preloader end -->
+
+  
+
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 mb-4 mb-md-0">
+
+        <div class="product-image-slider">
+          <div data-image="{{ product.image1.url }}">
+            <img class="img-fluid w-100" src="{{ product.image1.url }}" alt="product-image">
+          </div>
+          
+          {% if product.image2 %}
+          <div data-image="{{ product.image2.url }}">
+            <img class="img-fluid w-100" src="{{ product.image2.url }}" alt="product-image">
+          </div>
+          
+          {% elif product.image3 %}
+          <div data-image="{{ product.image3.url }}">
+            <img class="img-fluid w-100" src="{{ product.image3.url }}" alt="product-image">
+          </div>
+          {% elif product.image4 %}
+          <div data-image="{{ product.image4.url }}">
+            <img class="img-fluid w-100" src="{{ product.image4.url }}" alt="product-image">
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-7 offset-lg-1">
+        <h1 class="mb-4">{{ product.name }}</h1>
+        <p><strong>Colors: </strong>Black, White, Gray</p>
+        <p><strong>Sizes: </strong>{{ product.size }}</p>
+        <p class="price py-4">${{ product.discount_price }}
+          <s class="price">${{ product.orgianal_price }}</s>
+        </p>
+        <button class="snipcart-add-item btn btn-main mb-5" data-item-id="apple-watch__25.00"
+          data-item-name="Apple Watch" data-item-image="images/showcase/showcase-1.png" data-item-price="25.00"
+          data-item-url="products/product-1/" data-item-custom1-name="Choose Color"
+          data-item-custom1-options="Black|White|Gray" data-item-custom2-name="Choose Size"
+          data-item-custom2-options="Small|Medium|Large">Add to Cart
+        </button>
+        <div class="content">
+          <p>{{ product.desp  }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="plugins/jquery/jquery.js"></script>
+
+<script src="plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="plugins/slick/slick.min.js"></script>
+
+<script src="js/script.js"></script>
+</body>
+</html>
+
+{% endblock content %}

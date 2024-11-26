@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<body id="body">
+  
+<!-- preloader start -->
+<div class="preloader"></div>
+<!-- preloader end -->
+
+  
+
+<section class="section gallery">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center mb-5">
+        <h1 class="font-weight-bold">All latest Smart Watch</h1>
+      </div>
+      {% comment %} product div {% endcomment %}
+      {% for product in products  %}
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="block">
+          <div class="gallery-overlay">
+            <a href="{% url "product_details" product.id  %}" class="gallery-popup">
+              <i class="tf-ion-plus-round"></i>
+            </a>
+          </div>
+          <img class="img-fluid" src="{{ product.image1.url }}" alt="Apple Watch">
+        </div>
+        <div class="product-info">
+        <h4 class="mb-2"><a href="product-details.html" class="link-title">{{  product.name }}</a></h4>
+        <p class="price">${{ product.discount_price }}
+          <s class="price">${{ product.orgianal_price }}</s>
+          </p>
+        </div>
+      </div>
+      
+     
+      {% endfor %}
+    </div>
+  </div>
+
+</section>
+
+{% endblock content %}
