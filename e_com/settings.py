@@ -40,12 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shop.apps.ShopConfig',
     "multiselectfield",
-    "django_cleanup"
+    "django_cleanup",
+
     'allauth',
     'allauth.account',
-    "django.contrib.sites"
+    "django.contrib.sites",
 
-    'allauth.socialaccount'
+    'allauth.socialaccount',
 
 ]
 
@@ -163,3 +164,12 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATED_REDIRECT_URL = "home"  # Redirect after login
+ACCOUNT_LOGOUT_REDIRECT_URL = 'home'  # Redirect after logout
+LOGIN_REDIRECT_URL = 'home' 
+ACCOUNT_SIGNUP_REDIRECT_URL = 'home'  # Redirect after logout
+ACCOUNT_LOGIN_REDIRECT_URL = 'home'  # Redirect after logout
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
