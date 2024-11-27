@@ -121,3 +121,8 @@ def cart_delete(request,cart_id):
 
     return redirect("cart_summary")
 
+def contact(request):
+    return render(request,"contact.html")
+
+def terms_conditions(request):
+    return render(request,"terms-conditions.html")

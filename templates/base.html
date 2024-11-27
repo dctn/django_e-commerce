@@ -64,10 +64,10 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="blog.html">Blog</a>
+            <a class="nav-link" href="{% url "terms_conditions" %}">Terms Conditions</a>
           </li>
 
-          <li class="nav-item dropdown">
+          {% comment %} <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#!" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages <i class="tf-ion-chevron-down"></i></a>
             <ul class="dropdown-menu" aria-labelledby="dropdown03">
               <li><a class="dropdown-item" href="blog-details.html">Blog Details</a></li>
@@ -93,10 +93,10 @@
                 </ul>
               </li>
             </ul>
-          </li>
+          </li> {% endcomment %}
 
           <li class="nav-item">
-            <a class="nav-link" href="index.html#testimonial">contact</a>
+            <a class="nav-link" href="{% url "contact" %}">contact</a>
           </li>
           {% if request.user.is_authenticated %}
           <li class="nav-item">
