@@ -29,6 +29,8 @@ class Products(models.Model):
 class Cart(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     product = models.ForeignKey(Products,on_delete=models.CASCADE)
+    color = models.CharField(max_length=550,default="")
+    Size = models.CharField(max_length=550,default="medium")
     quantity = models.IntegerField()
     
     def __str__(self):

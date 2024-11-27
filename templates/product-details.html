@@ -59,12 +59,18 @@
         <p class="price py-4">${{ product.discount_price }}
           <s class="price">${{ product.orgianal_price }}</s>
         </p>
+        <form method="POST">
+          {% csrf_token %}
+
+          {{ form.as_p  }}
+
         <button class="snipcart-add-item btn btn-main mb-5" data-item-id="apple-watch__25.00"
           data-item-name="Apple Watch" data-item-image="images/showcase/showcase-1.png" data-item-price="25.00"
           data-item-url="products/product-1/" data-item-custom1-name="Choose Color"
           data-item-custom1-options="Black|White|Gray" data-item-custom2-name="Choose Size"
-          data-item-custom2-options="Small|Medium|Large"><a href="{% url "atc" product.id  %}" class="atc-btn">Add to Cart</a>
+          data-item-custom2-options="Small|Medium|Large"><a class="atc-btn">Add to Cart</a>
         </button>
+      </form>
         <div class="content">
           <p>{{ product.desp  }}</p>
         </div>
