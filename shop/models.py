@@ -4,9 +4,9 @@ from multiselectfield import MultiSelectField
 from django.contrib.auth.models import User
 # Create your models here.
 class SizeChoice(models.TextChoices):
-    small = ("sm","Small")
-    medium = ("md","Medium")
-    large = ("lg","Large")
+    small = ("Small","Small")
+    medium = ("Medium","Medium")
+    large = ("Large","Large")
 
 
 class Products(models.Model):

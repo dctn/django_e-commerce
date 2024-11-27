@@ -2,22 +2,28 @@ from django.shortcuts import render,get_object_or_404,redirect
 from .models import *
 from django.contrib.auth.decorators import login_required
 from .forms import *
+from django.contrib import messages 
 # Create your views here.
 def index(request):
-    cart_items = Cart.objects.filter(user=request.user)
-
     total_item = 0
-    for product in cart_items:
-        total_item += product.quantity
+    if request.user.is_authenticated:
+        cart_items = Cart.objects.filter(user=request.user)
+
+       
+        for product in cart_items:
+            total_item += product.quantity
 
     return render(request,"index.html",{"total_item":total_item})
 
 def products(request):
-    cart_items = Cart.objects.filter(user=request.user)
-
     total_item = 0
-    for product in cart_items:
-        total_item += product.quantity
+    if request.user.is_authenticated:
+        cart_items = Cart.objects.filter(user=request.user)
+
+        total_item = 0
+        for product in cart_items:
+            total_item += product.quantity
+    
     all_products = Products.objects.all()
 
     context = {
@@ -28,11 +34,13 @@ def products(request):
 
 @login_required
 def product_details(request,product_id):
-    cart_items = Cart.objects.filter(user=request.user)
-
     total_item = 0
-    for product in cart_items:
-        total_item += product.quantity
+    if request.user.is_authenticated:
+        cart_items = Cart.objects.filter(user=request.user)
+
+        total_item = 0
+        for product in cart_items:
+            total_item += product.quantity
 
 
     product = get_object_or_404(Products,id=product_id)
@@ -84,9 +92,32 @@ def product_details(request,product_id):
 
 def cart_summary(request):
     cart_items = Cart.objects.filter(user=request.user)
+    if cart_items.first() is None:
+        messages.error(request,"Your Cart is empty")
+        return redirect("products")
+
+    total_price = 0
+    total_price_without_discount = 0
+
+    for item in cart_items:
+        total_price += item.product.discount_price 
+        total_price_without_discount += item.product.orgianal_price 
 
     context = {
-        "cart_items":cart_items
+        "cart_items":cart_items,
+        "total":total_price,
+        "total_price_without_discount":total_price_without_discount,
+        "discount":total_price_without_discount - total_price,
+
     }
 
     return render(request,"cart_summary.html",context)
+
+@login_required
+def cart_delete(request,cart_id):
+    cart = get_object_or_404(Cart,id=cart_id)
+
+    cart.delete()
+
+    return redirect("cart_summary")
+

@@ -39,12 +39,13 @@
           <div data-image="{{ product.image2.url }}">
             <img class="img-fluid w-100" src="{{ product.image2.url }}" alt="product-image">
           </div>
-          
-          {% elif product.image3 %}
+          {% endif %}
+          {% if product.image3 %}
           <div data-image="{{ product.image3.url }}">
             <img class="img-fluid w-100" src="{{ product.image3.url }}" alt="product-image">
           </div>
-          {% elif product.image4 %}
+          {% endif %}
+          {% if product.image4 %}
           <div data-image="{{ product.image4.url }}">
             <img class="img-fluid w-100" src="{{ product.image4.url }}" alt="product-image">
           </div>
@@ -79,13 +80,13 @@
   </div>
 </section>
 
-<script src="plugins/jquery/jquery.js"></script>
+<script src="{% static "plugins/jquery/jquery.js" %}"></script>
 
-<script src="plugins/bootstrap/bootstrap.min.js"></script>
+<script src="{% static "plugins/bootstrap/bootstrap.min.js" %}"></script>
 
-<script src="plugins/slick/slick.min.js"></script>
+<script src="{% static "plugins/slick/slick.min.js" %}"></script>
 
-<script src="js/script.js"></script>
+<script src="{% static "js/script.js" %}"></script>
 </body>
 </html>
 

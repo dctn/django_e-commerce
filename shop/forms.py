@@ -2,9 +2,9 @@ from django import forms
 from .models import *
 
 class SizeChoice(models.TextChoices):
-    small = ("sm","Small")
-    medium = ("md","Medium")
-    large = ("lg","Large")
+    small = ("Small","Small")
+    medium = ("Medium","Medium")
+    large = ("Large","Large")
 
 class AtcForm(forms.ModelForm):
     class Meta:

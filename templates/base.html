@@ -116,6 +116,13 @@
       </div>
     </nav>
   </div>
+  <div class="text-center mt-4 mx-5 font-weight-bolder bg-warning text-white text-bold ">
+    {% if messages %}
+      {% for message in messages  %}
+        <h1 class="font-weight-bold">{{ message  }}</h1>
+      {% endfor %}
+    {% endif %}
+  </div>
 </header>
 
 

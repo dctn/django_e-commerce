@@ -36,21 +36,24 @@
 						 						<div class="row">
 							 						<div class="col-md-5 product-name">
 							 							<div class="product-name">
-								 							<a href="#" class="text-decoration-none d-inline text-center mx-5 px-3 fs-4 fw-bold ">{{ item.product.name }}</a>
+								 							<a href="#" style="font-size: 22px;"  class="text-decoration-none d-inline text-center mx-2 px-3 fs-4 fw-bold ">{{ item.product.name }}</a>
 								 							<div class="product-info">
-									 							<div>Display: <span class="value">5 inch</span></div>
-									 							<div>RAM: <span class="value">4GB</span></div>
-									 							<div>Memory: <span class="value">32GB</span></div>
+									 							<div>Color: <span class="value">{{ item.color|capfirst  }}</span></div>
+									 							<div>Size: <span class="value">{{ item.Size|capfirst }}</span></div>
+									 							{% comment %} <div>Memory: <span class="value">32GB</span></div> {% endcomment %}
 									 						</div>
 									 					</div>
 							 						</div>
 							 						<div class="col-md-4 quantity">
 							 							<label for="quantity">Quantity:</label>
-							 							<input id="quantity" type="number" value ="1" class="form-control quantity-input">
+							 							<h3 class="mx-4"> {{ item.quantity}} </h3>
 							 						</div>
-							 						<div class="col-md-3 price">
-							 							<span>$120</span>
+							 						<div class="col-md-2 price my-4  ">
+							 							<span style="font-size: 34px;">${{ item.product.discount_price}}</span>
 							 						</div>
+													<div class="col-md-1 ">
+														<a href="{% url "cart_delete" item.id %}" class="text-decoration-none">Delete</a>
+													</div>
 							 					</div>
 							 				</div>
 					 					</div>
@@ -66,10 +69,10 @@
 			 			<div class="col-md-12 col-lg-4">
 			 				<div class="summary">
 			 					<h3>Summary</h3>
-			 					<div class="summary-item"><span class="text">Subtotal</span><span class="price">$360</span></div>
-			 					<div class="summary-item"><span class="text">Discount</span><span class="price">$0</span></div>
-			 					<div class="summary-item"><span class="text">Shipping</span><span class="price">$0</span></div>
-			 					<div class="summary-item"><span class="text">Total</span><span class="price">$360</span></div>
+			 					<div class="summary-item"><span class="text">Orginial Price: </span><span class="price"> ${{ total_price_without_discount  }}</span></div>
+			 					<div class="summary-item"><span class="text mx-3">Discount: </span><span class="price">${{ discount }}</span></div>
+			 					{% comment %} <div class="summary-item"><span class="text">Shipping: </span><span class="price">${{ 2 }}</span></div> {% endcomment %}
+			 					<div class="summary-item"><span class="text mx-4 "> &nbsp; Total: </span><span class="price mx-1"> ${{ total }}</span></div>
 			 					<button type="button" class="btn btn-primary btn-lg btn-block">Checkout</button>
 				 			</div>
 			 			</div>
