@@ -121,6 +121,28 @@ def cart_delete(request,cart_id):
 
     return redirect("cart_summary")
 
+
+def order(request):
+    cart_items = Cart.objects.filter(user=request.user)
+    new_order = []
+    for item in cart_items:
+            orders = Order()
+            orders.product = item.product
+            orders.color = item.color
+            orders.size = item.Size
+            orders.quantity = item.quantity
+            orders.price = item.product.discount_price
+            orders.user = request.user
+            orders.save()
+            new_order.append(orders)
+    messages.success(request,"Your order is placed")
+    print(new_order)
+    cart_items.delete()
+    context = {
+        "orders":new_order
+    }
+    return render(request,"order.html",context)
+
 def contact(request):
     return render(request,"contact.html")
 

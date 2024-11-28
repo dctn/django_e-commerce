@@ -32,6 +32,7 @@ class Cart(models.Model):
     color = models.CharField(max_length=550,default="")
     Size = models.CharField(max_length=550,default="medium")
     quantity = models.IntegerField()
+    id_test = models.CharField(max_length=50,default="",editable=False)
     
     def __str__(self):
         return f"{self.user}: {self.product}"
@@ -42,3 +43,15 @@ class Colors(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class Order(models.Model):
+    product = models.CharField(max_length=500)
+    size = models.CharField(max_length=500,)
+    color = models.CharField(max_length=500)
+    user = models.ForeignKey(User,on_delete=models.PROTECT,default="")
+    id = models.CharField(max_length=550,default=uuid.uuid4,editable=False,primary_key=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f" {self.user}: {self.product}"
