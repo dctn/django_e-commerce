@@ -1,7 +1,7 @@
 # Ignore Python bytecode files
 *.pyc
 *.pyo
-__pycache__/
+/__pycache__/
 
 # Ignore virtual environments
 env/
@@ -17,6 +17,7 @@ db.sqlite3
 # Ignore media and static files
 /static/
 /media/
+/node/
 
 # Ignore IDE configuration files
 .vscode/
