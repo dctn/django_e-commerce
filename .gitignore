@@ -18,6 +18,7 @@ db.sqlite3
 /static/
 /media/
 /node/
+/product_images/
 
 # Ignore IDE configuration files
 .vscode/

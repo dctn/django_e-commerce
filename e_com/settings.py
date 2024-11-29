@@ -15,6 +15,10 @@ import os
 from environ import Env
 import dj_database_url
 
+import cloudinary
+import cloudinary.uploader
+from cloudinary.utils import cloudinary_url
+
 env = Env()
 Env.read_env()
 ENVIRONMENT = env("ENVIRONMENT",default="production")
@@ -170,19 +174,21 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+
 MEDIA_URL = '/media/'
 
-if ENVIRONMENT == "production" or POSTGRES_LOCALLY == True :
-    DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
-else:
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+# else:
+#     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': env("CLOUD_NAME"),
-    'API_KEY': env("CLOUD_API_KEY"),
-    'API_SECRET': env("CLOUD_API_SECRET")
-}
+
+cloudinary.config( 
+    cloud_name = env("CLOUD_NAME"), 
+    api_key = env("CLOUD_API_KEY"), 
+    api_secret = env("CLOUD_API_SECRET"), # Click 'View API Keys' above to copy your API secret
+    secure=True
+)
 
 
 SOCIALACCOUNT_PROVIDERS = {

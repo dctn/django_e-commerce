@@ -3,6 +3,7 @@ import uuid
 from multiselectfield import MultiSelectField
 from django.contrib.auth.models import User
 from django_resized import ResizedImageField
+from cloudinary.models import CloudinaryField
 # Create your models here.
 class SizeChoice(models.TextChoices):
     small = ("Small","Small")
@@ -18,10 +19,10 @@ class Products(models.Model):
     id = models.CharField(max_length=50,default=uuid.uuid4,primary_key=True,editable=False)
     colors = models.ManyToManyField("shop.Colors")
     size = MultiSelectField(choices=SizeChoice,max_length=255,default=SizeChoice.medium) 
-    image1 = ResizedImageField(upload_to="product_images/",default="watch.png",size=[600,600],quality=85)
-    image2 = ResizedImageField(upload_to="product_images/",null=True,blank=True)
-    image3 = ResizedImageField(upload_to="product_images/",null=True,blank=True)
-    image4 = ResizedImageField(upload_to="product_images/",null=True,blank=True)
+    image1 = CloudinaryField("image")
+    image2 = CloudinaryField("image")
+    image3 = CloudinaryField("image")
+    image4 = CloudinaryField("image")
 
 
     def __str__(self):
