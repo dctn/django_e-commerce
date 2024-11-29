@@ -2,6 +2,7 @@ from django.db import models
 import uuid
 from multiselectfield import MultiSelectField
 from django.contrib.auth.models import User
+from django_resized import ResizedImageField
 # Create your models here.
 class SizeChoice(models.TextChoices):
     small = ("Small","Small")
@@ -17,10 +18,10 @@ class Products(models.Model):
     id = models.CharField(max_length=50,default=uuid.uuid4,primary_key=True,editable=False)
     colors = models.ManyToManyField("shop.Colors")
     size = MultiSelectField(choices=SizeChoice,max_length=255,default=SizeChoice.medium) 
-    image1 = models.ImageField(upload_to="product_images/",default="watch.png")
-    image2 = models.ImageField(upload_to="product_images/",null=True,blank=True)
-    image3 = models.ImageField(upload_to="product_images/",null=True,blank=True)
-    image4 = models.ImageField(upload_to="product_images/",null=True,blank=True)
+    image1 = ResizedImageField(upload_to="product_images/",default="watch.png",size=[600,600],quality=85)
+    image2 = ResizedImageField(upload_to="product_images/",null=True,blank=True)
+    image3 = ResizedImageField(upload_to="product_images/",null=True,blank=True)
+    image4 = ResizedImageField(upload_to="product_images/",null=True,blank=True)
 
 
     def __str__(self):
