@@ -1,0 +1,12 @@
+env/
+
+
+
+static/
+media/
+node/
+
+__pycache__
+.env
+db.sqlite3
+.DS _Store
