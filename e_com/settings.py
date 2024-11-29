@@ -12,7 +12,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+from environ import Env
 
+env = Env()
+Env.read_env()
+ENVIRONMENT = env("ENVIRONMENT",default="production")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,17 +25,26 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-3b*7j3p6r85g7wr#**71#=222$qml@piv%v^slms_^!%7lweq8'
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if ENVIRONMENT == "development":
+    DEBUG = True
+else:
+    DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+
+INTERNAL_IPS= (
+    "127.0.0.1",
+    "localhost:8000"
+)
+
 
 
 # Application definition
 
-INSTALLED_APPS = [
+INSTALLED_APPS = [  
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,6 +61,8 @@ INSTALLED_APPS = [
 
     'allauth.socialaccount',
 
+    "admin_honeypot",
+
 ]
 
 SITE_ID = 1
@@ -61,6 +76,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "allauth.account.middleware.AccountMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 
 ]
 
@@ -173,3 +189,6 @@ LOGIN_REDIRECT_URL = 'home'
 ACCOUNT_SIGNUP_REDIRECT_URL = 'home'  # Redirect after logout
 ACCOUNT_LOGIN_REDIRECT_URL = 'home'  # Redirect after logout
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+ACCOUNT_USERNAME_BLOCKLIST = ["stranger","admin","mahes"]

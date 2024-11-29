@@ -8,6 +8,7 @@
 /*--
     Common Css
 --*/
+@import '~bootstrap/scss/bootstrap';
 html {
   overflow-x: hidden;
 }

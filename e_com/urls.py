@@ -23,7 +23,8 @@ from django.urls import path
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/',include('admin_honeypot.urls',  namespace='admin_honeypot')),
+    path('stranger/', admin.site.urls),
     path("",include("shop.urls")),
     path('accounts/', include('allauth.urls')),
 
