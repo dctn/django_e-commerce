@@ -1,12 +1,54 @@
+# Ignore Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignore virtual environments
 env/
+venv/
+*.env
+*.venv
 
-
-
-static/
-media/
-node/
-
-__pycache__
-.env
+# Ignore Django files
+*.log
+*.sqlite3
 db.sqlite3
-.DS _Store
+
+# Ignore media and static files
+/static/
+/media/
+
+# Ignore IDE configuration files
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+# Ignore Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignore virtual environments
+env/
+venv/
+*.env
+*.venv
+
+# Ignore Django files
+*.log
+*.sqlite3
+db.sqlite3
+
+# Ignore media and static files
+/static/
+/media/
+
+# Ignore IDE configuration files
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
